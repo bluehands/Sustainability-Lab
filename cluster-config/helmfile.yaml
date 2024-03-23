@@ -19,28 +19,10 @@ templates:
       - './secrets/{{ "{{" }} .Release.Name {{ "}}" }}.yaml.gotmpl'
 
 repositories:
-  - name: azuredisk-csi-driver
-    url: https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/charts
-
-  - name: k8s-as-helm
-    url: https://ameijer.github.io/k8s-as-helm/
-
   - name: kepler
     url: https://sustainable-computing-io.github.io/kepler-helm-chart
 
 releases:
-  # - <<: *default
-  #   name: azuredisk-csi-driver
-  #   namespace: kube-system
-  #   chart: azuredisk-csi-driver/azuredisk-csi-driver
-  #   version: ^1.30.0
-
-  # - <<: *default
-  #   name: azure-cloud-provider
-  #   namespace: kube-system
-  #   chart: k8s-as-helm/secret
-  #   version: ^1.0.4
-
   - <<: *default
     name: kepler
     namespace: monitoring
