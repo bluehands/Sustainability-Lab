@@ -1,0 +1,39 @@
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+  fallbackApiVersion: v1
+
+additionalArguments:
+  - --providers.kubernetescrd.allowCrossNamespace=true
+  - --providers.kubernetesingress.ingressendpoint.publishedservice={{ .Release.Namespace }}/traefik
+  - --providers.kubernetesingress.allowemptyservices=true
+  - --providers.kubernetesingress.allowexternalnameservices=true
+  - --providers.kubernetescrd.allowexternalnameservices=true
+
+ports:
+  traefik:
+    expose: true
+  web:
+    port: 80
+  websecure:
+    port: 443
+    tls:
+      enabled: true
+
+# Does not work while CRDs are not deployed
+ingressRoute:
+  dashboard:
+    enabled: false
+
+securityContext:
+  capabilities:
+    drop: [ALL]
+    add: [NET_BIND_SERVICE]
+  readOnlyRootFilesystem: true
+  runAsGroup: 0
+  runAsNonRoot: false
+  runAsUser: 0
+
+resources:
+  requests:
+    cpu: 10m
