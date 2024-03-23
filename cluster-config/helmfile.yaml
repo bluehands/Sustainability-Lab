@@ -29,6 +29,9 @@ repositories:
   - name: traefik
     url: https://helm.traefik.io/traefik/
 
+  - name: kedacore
+    url: https://kedacore.github.io/charts
+
 releases:
   - <<: *default
     name: kepler
@@ -47,3 +50,9 @@ releases:
     namespace: kube-system
     chart: traefik/traefik
     version: ^26.1.0
+
+  - <<: *default
+    name: keda
+    namespace: scaling
+    chart: kedacore/keda
+    version: ^2.12.1
