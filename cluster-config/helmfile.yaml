@@ -1,7 +1,8 @@
 environments:
   default:
     values:
-      - ./environments/default.yaml
+      - ./environments/values.yaml
+      - ./environments/secrets.yaml
 
 ---
 
