@@ -32,6 +32,9 @@ repositories:
   - name: kedacore
     url: https://kedacore.github.io/charts
 
+  - name: bjw-s
+    url: https://bjw-s.github.io/helm-charts/
+
 releases:
   - <<: *default
     name: kepler
@@ -56,3 +59,9 @@ releases:
     namespace: scaling
     chart: kedacore/keda
     version: ^2.13.2
+
+  - <<: *default
+    name: load-app
+    namespace: app-testing
+    chart: bjw-s/app-template
+    version: ^3.0.4

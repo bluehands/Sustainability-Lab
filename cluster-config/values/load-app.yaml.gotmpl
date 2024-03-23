@@ -1,0 +1,24 @@
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: sustainabilitylab.azurecr.io/load-app
+          tag: latest
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  main:
+    hosts:
+      - host: load-app.{{ .Values.domain }}
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
