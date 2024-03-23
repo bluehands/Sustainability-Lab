@@ -13,7 +13,6 @@ templates:
       - './values/{{ "{{" }} splitList "/" .Release.Chart | last {{ "}}" }}.chart.yaml.gotmpl'
       - './values/{{ "{{" }} .Release.Name {{ "}}" }}.yaml'
       - './values/{{ "{{" }} .Release.Name {{ "}}" }}.yaml.gotmpl'
-    secrets:
       - './secrets/{{ "{{" }} splitList "/" .Release.Chart | last {{ "}}" }}.chart.yaml'
       - './secrets/{{ "{{" }} splitList "/" .Release.Chart | last {{ "}}" }}.chart.yaml.gotmpl'
       - './secrets/{{ "{{" }} .Release.Name {{ "}}" }}.yaml'
@@ -23,9 +22,27 @@ repositories:
   - name: azuredisk-csi-driver
     url: https://raw.githubusercontent.com/kubernetes-sigs/azuredisk-csi-driver/master/charts
 
+  - name: k8s-as-helm
+    url: https://ameijer.github.io/k8s-as-helm/
+
+  - name: kepler
+    url: https://sustainable-computing-io.github.io/kepler-helm-chart
+
 releases:
+  # - <<: *default
+  #   name: azuredisk-csi-driver
+  #   namespace: kube-system
+  #   chart: azuredisk-csi-driver/azuredisk-csi-driver
+  #   version: ^1.30.0
+
+  # - <<: *default
+  #   name: azure-cloud-provider
+  #   namespace: kube-system
+  #   chart: k8s-as-helm/secret
+  #   version: ^1.0.4
+
   - <<: *default
-    name: azuredisk-csi-driver
-    namespace: kube-system
-    chart: azuredisk-csi-driver/azuredisk-csi-driver
-    version: ^1.30.0
+    name: kepler
+    namespace: monitoring
+    chart: kepler/kepler
+    version: '0.5.5'
