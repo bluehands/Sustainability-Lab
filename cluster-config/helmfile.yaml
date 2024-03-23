@@ -55,4 +55,4 @@ releases:
     name: keda
     namespace: scaling
     chart: kedacore/keda
-    version: ^2.12.1
+    version: ^2.13.2
