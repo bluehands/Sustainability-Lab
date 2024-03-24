@@ -70,3 +70,10 @@ releases:
     name: load-app-autoscaling
     namespace: app-testing
     chart: {{ $local }}/resource
+
+  # TODO: Chart is currently static. Needs to be made more dynamic.
+  - <<: *default
+    name: carbon-aware-keda-operator
+    namespace: scaling
+    chart: {{ $local }}/carbon-aware-keda-operator
+

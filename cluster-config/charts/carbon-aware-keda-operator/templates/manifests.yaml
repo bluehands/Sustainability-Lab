@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    app.kubernetes.io/component: manager
-    app.kubernetes.io/created-by: carbon-aware-keda-operator
-    app.kubernetes.io/instance: system
-    app.kubernetes.io/managed-by: kustomize
-    app.kubernetes.io/name: namespace
-    app.kubernetes.io/part-of: carbon-aware-keda-operator
-    control-plane: controller-manager
-  name: carbon-aware-keda-operator-system
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   labels:
+#     app.kubernetes.io/component: manager
+#     app.kubernetes.io/created-by: carbon-aware-keda-operator
+#     app.kubernetes.io/instance: system
+#     app.kubernetes.io/managed-by: kustomize
+#     app.kubernetes.io/name: namespace
+#     app.kubernetes.io/part-of: carbon-aware-keda-operator
+#     control-plane: controller-manager
+#   name: {{ .Release.Namespace }}
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -270,7 +270,7 @@ metadata:
     app.kubernetes.io/name: serviceaccount
     app.kubernetes.io/part-of: carbon-aware-keda-operator
   name: carbon-aware-keda-operator-controller-manager
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -283,7 +283,7 @@ metadata:
     app.kubernetes.io/name: role
     app.kubernetes.io/part-of: carbon-aware-keda-operator
   name: carbon-aware-keda-operator-leader-election-role
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
   - ""
@@ -441,7 +441,7 @@ metadata:
     app.kubernetes.io/name: rolebinding
     app.kubernetes.io/part-of: carbon-aware-keda-operator
   name: carbon-aware-keda-operator-leader-election-rolebinding
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -449,7 +449,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: carbon-aware-keda-operator-controller-manager
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -469,7 +469,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: carbon-aware-keda-operator-controller-manager
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -489,7 +489,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: carbon-aware-keda-operator-controller-manager
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 ---
 apiVersion: v1
 kind: Service
@@ -503,7 +503,7 @@ metadata:
     app.kubernetes.io/part-of: carbon-aware-keda-operator
     control-plane: controller-manager
   name: carbon-aware-keda-operator-controller-manager-metrics-service
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - name: https
@@ -525,7 +525,7 @@ metadata:
     app.kubernetes.io/part-of: carbon-aware-keda-operator
     control-plane: controller-manager
   name: carbon-aware-keda-operator-controller-manager
-  namespace: carbon-aware-keda-operator-system
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
