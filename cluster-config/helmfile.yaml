@@ -37,6 +37,12 @@ repositories:
 
 releases:
   - <<: *default
+    name: traefik
+    namespace: kube-system
+    chart: traefik/traefik
+    version: ^26.1.0
+
+  - <<: *default
     name: kepler
     namespace: monitoring
     chart: kepler/kepler
@@ -49,16 +55,16 @@ releases:
     version: ^57.1.0
 
   - <<: *default
-    name: traefik
-    namespace: kube-system
-    chart: traefik/traefik
-    version: ^26.1.0
-
-  - <<: *default
     name: keda
     namespace: scaling
     chart: kedacore/keda
     version: ^2.13.2
+
+  # TODO: Chart is currently static. Needs to be made more dynamic.
+  - <<: *default
+    name: carbon-aware-keda-operator
+    namespace: scaling
+    chart: {{ $local }}/carbon-aware-keda-operator
 
   - <<: *default
     name: load-app
@@ -71,9 +77,7 @@ releases:
     namespace: app-testing
     chart: {{ $local }}/resource
 
-  # TODO: Chart is currently static. Needs to be made more dynamic.
   - <<: *default
-    name: carbon-aware-keda-operator
-    namespace: scaling
-    chart: {{ $local }}/carbon-aware-keda-operator
-
+    name: load-app-carbon-aware-scaling
+    namespace: app-testing
+    chart: {{ $local }}/resource
