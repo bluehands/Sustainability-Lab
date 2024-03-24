@@ -5,6 +5,10 @@ controllers:
         image:
           repository: sustainabilitylab.azurecr.io/load-app
           tag: latest
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
 
 service:
   main:

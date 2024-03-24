@@ -5,7 +5,7 @@ environments:
       - ./environments/secrets.yaml
 
 ---
-
+{{ $local := "./charts" }}
 templates:
   default: &default
     missingFileHandler: Debug
@@ -65,3 +65,8 @@ releases:
     namespace: app-testing
     chart: bjw-s/app-template
     version: ^3.0.4
+
+  - <<: *default
+    name: load-app-autoscaling
+    namespace: app-testing
+    chart: {{ $local }}/resource
