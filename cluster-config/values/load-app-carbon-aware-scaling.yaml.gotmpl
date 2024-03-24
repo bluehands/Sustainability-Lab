@@ -7,20 +7,18 @@ resource:
       name: load-app-autoscaling
       namespace: {{ .Release.Namespace }}
     carbonIntensityForecastDataSource:       # carbon intensity forecast data source 
-      mockCarbonForecast: true              # [OPTIONAL] use mock carbon forecast data 
-      # localConfigMap:                        # [OPTIONAL] use configmap for carbon forecast data 
-      #   name: carbon-intensity
-      #   namespace: kube-system
-      #   key: data
+      # mockCarbonForecast: true              # [OPTIONAL] use mock carbon forecast data 
+      localConfigMap:                        # [OPTIONAL] use configmap for carbon forecast data 
+        name: carbon-intensity
+        namespace: kube-system
+        key: data
     maxReplicasByCarbonIntensity:            # array of carbon intensity values in ascending order; each threshold value represents the upper limit and previous entry represents lower limit 
-      - carbonIntensityThreshold: 540        # when carbon intensity is 437 or below 
-        maxReplicas: 20                     # do more 
-      - carbonIntensityThreshold: 560        # when carbon intensity is >437 and <=504 
-        maxReplicas: 5
-      - carbonIntensityThreshold: 570        # when carbon intensity is >504 and <=571 (and beyond) 
+      - carbonIntensityThreshold: 155        # when carbon intensity is 437 or below 
+        maxReplicas: 20                     # do more
+      - carbonIntensityThreshold: 200        # when carbon intensity is >504 and <=571 (and beyond) 
         maxReplicas: 1                      # do less 
     ecoModeOff:                              # [OPTIONAL] settings to override carbon awareness; can override based on high intensity duration or schedules 
-      maxReplicas: 100                       # when carbon awareness is disabled, use this value 
+      maxReplicas: 101                       # when carbon awareness is disabled, use this value 
       carbonIntensityDuration:               # [OPTIONAL] disable carbon awareness when carbon intensity is high for this length of time 
         carbonIntensityThreshold: 999        # when carbon intensity is equal to or above this value, consider it high 
         overrideEcoAfterDurationInMins: 45   # if carbon intensity is high for this many hours disable ecomode 
