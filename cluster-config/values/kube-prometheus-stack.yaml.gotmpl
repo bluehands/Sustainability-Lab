@@ -17,6 +17,14 @@ prometheus:
     probeSelectorNilUsesHelmValues: false
     scrapeConfigSelectorNilUsesHelmValues: false
 
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
   ingress:
     enabled: true
     annotations:
@@ -25,6 +33,9 @@ prometheus:
 
 grafana:
   adminPassword: e39c5c38-5c14-5d0e-b7a8-0b513ed0ec8f
+
+  persistence:
+    enabled: true
 
   ingress:
     enabled: true
