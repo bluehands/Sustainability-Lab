@@ -35,6 +35,9 @@ repositories:
   - name: bjw-s
     url: https://bjw-s.github.io/helm-charts/
 
+  - name: fairwinds-stable
+    url: https://charts.fairwinds.com/stable
+
 releases:
   - <<: *default
     name: traefik
@@ -65,6 +68,12 @@ releases:
     name: carbon-aware-keda-operator
     namespace: scaling
     chart: {{ $local }}/carbon-aware-keda-operator
+
+  - <<: *default
+    name: goldilocks
+    namespace: scaling
+    chart: fairwinds-stable/goldilocks
+    version: ^8.0.1
 
   - <<: *default
     name: load-app

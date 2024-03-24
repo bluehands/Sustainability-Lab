@@ -1,0 +1,13 @@
+# kubectl apply --server-side -f https://raw.githubusercontent.com/FairwindsOps/charts/42751a0a44e3695c8eaf6622efb8cc05af5c548a/stable/vpa/crds/vpa-v1-crd.yaml
+
+vpa:
+  enabled: true
+
+dashboard:
+  ingress:
+    enabled: true
+    hosts:
+      - host: goldilocks.{{ .Values.domain }}
+        paths:
+          - path: /
+            type: Prefix
