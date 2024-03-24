@@ -58,6 +58,11 @@ releases:
     version: ^57.1.0
 
   - <<: *default
+    name: dashboards
+    namespace: monitoring
+    chart: {{ $local }}/resource
+
+  - <<: *default
     name: keda
     namespace: scaling
     chart: kedacore/keda
