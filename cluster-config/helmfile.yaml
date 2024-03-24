@@ -38,6 +38,9 @@ repositories:
   - name: fairwinds-stable
     url: https://charts.fairwinds.com/stable
 
+  - name: k8s-as-helm
+    url: https://ameijer.github.io/k8s-as-helm/
+
 releases:
   - <<: *default
     name: traefik
@@ -79,6 +82,18 @@ releases:
     namespace: scaling
     chart: fairwinds-stable/goldilocks
     version: ^8.0.1
+
+  - <<: *default
+    name: grid-carbon-intensity-configmap-exporter
+    namespace: scaling
+    chart: bjw-s/app-template
+    version: ^3.0.4
+
+  - <<: *default
+    name: dieter
+    # namespace: scaling
+    chart: k8s-as-helm/clusterrolebinding
+    version: ^1.0.0
 
   - <<: *default
     name: load-app

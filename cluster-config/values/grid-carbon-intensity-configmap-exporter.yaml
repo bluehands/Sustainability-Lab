@@ -1,0 +1,20 @@
+controllers:
+  main:
+    type: cronjob
+    cronjob:
+      schedule: "0 */4 * * *"
+    containers:
+      main:
+        image:
+          repository: sustainabilitylab.azurecr.io/kubernetes-grid-carbon-intensity-configmap-exporter
+          tag: latest
+        args:
+          - --computing-location
+          - de
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+
+serviceAccount:
+  create: true

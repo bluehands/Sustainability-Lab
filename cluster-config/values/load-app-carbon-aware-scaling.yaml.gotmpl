@@ -15,7 +15,7 @@ resource:
     maxReplicasByCarbonIntensity:            # array of carbon intensity values in ascending order; each threshold value represents the upper limit and previous entry represents lower limit 
       - carbonIntensityThreshold: 155        # when carbon intensity is 437 or below 
         maxReplicas: 20                     # do more
-      - carbonIntensityThreshold: 200        # when carbon intensity is >504 and <=571 (and beyond) 
+      - carbonIntensityThreshold: 900        # when carbon intensity is >504 and <=571 (and beyond) 
         maxReplicas: 1                      # do less 
     ecoModeOff:                              # [OPTIONAL] settings to override carbon awareness; can override based on high intensity duration or schedules 
       maxReplicas: 101                       # when carbon awareness is disabled, use this value 
