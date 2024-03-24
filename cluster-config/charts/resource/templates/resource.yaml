@@ -1,0 +1,16 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: {{ required "A resource kind is required" .Values.kind }}
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    {{- include "resource.labels" . | nindent 4 }}
+{{- with .Values.metadata.labels }}
+    {{- toYaml . | nindent 4 }}
+{{- end }}
+{{- with .Values.metadata.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+{{- end }}
+{{- with .Values.resource }}
+{{ toYaml . }}
+{{- end }}
