@@ -90,7 +90,7 @@ releases:
     version: ^3.0.4
 
   - <<: *default
-    name: dieter
+    name: grid-carbon-intensity-configmap-exporter-crb
     # namespace: scaling
     chart: k8s-as-helm/clusterrolebinding
     version: ^1.0.0
