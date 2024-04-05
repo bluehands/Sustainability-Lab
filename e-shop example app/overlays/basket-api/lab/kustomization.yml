@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../../../basket-api
+
+namespace: app-eshop
+
+patchesStrategicMerge:
+  - deployment.yml
+
+configMapGenerator:
+  - name: basket-api-env
+    behavior: merge
+    literals:
+      - IdentityUrl=https://identity-api.aks.carbon-aware-computing.com
+      - Logging__LogLevel__Default=Debug

@@ -1,0 +1,10 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-api
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+      - name: sustainabilitylab

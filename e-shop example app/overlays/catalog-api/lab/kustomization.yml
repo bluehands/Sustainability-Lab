@@ -1,0 +1,8 @@
+bases:
+- ../../../catalog-api  
+
+patchesStrategicMerge:
+- deployment.yml
+
+namespace: app-eshop
+

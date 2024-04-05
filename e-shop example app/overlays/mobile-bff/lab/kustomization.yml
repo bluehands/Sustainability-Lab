@@ -1,0 +1,8 @@
+bases:
+- ../../../mobile-bff  
+
+patchesStrategicMerge:
+- deployment.yml
+
+namespace: app-eshop
+

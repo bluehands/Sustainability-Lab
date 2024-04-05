@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-api
+
+spec:
+  
+  template:
+    spec:
+      containers:
+      - name: identity-api
+        volumeMounts:
+          - name: ca-pemstore
+            mountPath: /etc/ssl/certs/metacortex.pem
+            subPath: metacortex.pem
+            readOnly: false  
+          - name: cert
+            mountPath: app/certs/web.pfx
+            subPath: web.pfx
+            readOnly: false  
+      imagePullSecrets:
+      - name: sustainabilitylab
+  
+      volumes:
+          - name: ca-pemstore
+            configMap:
+              name: ca-pemstore
+              items: 
+              - key: MetacortexPharmaceuticalIssuingCA-chain.pem
+                path: metacortex.pem
+          - name: cert
+            secret:
+              secretName: identity-api-cert
+              items: 
+              - key: tls.pfx
+                path: web.pfx

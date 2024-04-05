@@ -1,0 +1,4 @@
+bases:
+- ../../../redis  
+
+namespace: app-eshop

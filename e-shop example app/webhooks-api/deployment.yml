@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhooks-api
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webhooks-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: webhooks-api
+    spec:
+      containers:
+      - name: webhooks-api
+        image: sustainabilitylab.azurecr.io/webhooks-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        - containerPort: 8443
+        envFrom:
+        - configMapRef:
+            name: webhooks-api-env
+      terminationGracePeriodSeconds: 180

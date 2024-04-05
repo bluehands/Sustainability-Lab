@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: webapp-ingress-route-tcp
+
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: HostSNI(`{{ required "Host is required." .Values.host }}`)
+      services:
+        - name: webapp
+          port: 8443
+  tls:
+    passthrough: true
