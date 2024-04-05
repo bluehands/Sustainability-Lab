@@ -20,10 +20,10 @@ ports:
     tls:
       enabled: true
 
-# Does not work while CRDs are not deployed
+# Does not work while CRDs are not deployed -> Needs to be disabled before applying for the first time
 ingressRoute:
   dashboard:
-    enabled: false
+    enabled: true
 
 securityContext:
   capabilities:
