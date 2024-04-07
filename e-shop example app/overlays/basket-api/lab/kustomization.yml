@@ -8,10 +8,16 @@ namespace: app-eshop
 
 patchesStrategicMerge:
   - deployment.yml
+  - cert-secret.yml
 
 configMapGenerator:
   - name: basket-api-env
     behavior: merge
     literals:
       - IdentityUrl=https://identity-api.aks.carbon-aware-computing.com
+      - Identity__Url=https://identity-api.aks.carbon-aware-computing.com
+      - Kestrel__Certificates__Default__Path=certs/web.pfx
+      - Kestrel__Certificates__Default__Password=xx
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8443
       - Logging__LogLevel__Default=Debug

@@ -19,7 +19,7 @@ spec:
       containers:
       - name: identity-api
         image: sustainabilitylab.azurecr.io/identity-api:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         - containerPort: 8443

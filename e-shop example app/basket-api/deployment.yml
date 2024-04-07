@@ -19,7 +19,7 @@ spec:
       containers:
       - name: basket-api
         image: sustainabilitylab.azurecr.io/basket-api:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         - containerPort: 8443

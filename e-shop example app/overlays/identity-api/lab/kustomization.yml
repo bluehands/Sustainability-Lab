@@ -20,5 +20,6 @@ configMapGenerator:
     - Kestrel__Certificates__Default__Password=xx
     - ASPNETCORE_HTTP_PORTS=8080
     - ASPNETCORE_HTTPS_PORTS=8443
+    - Logging__LogLevel__Default=Debug
 
 

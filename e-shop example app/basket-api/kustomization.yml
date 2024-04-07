@@ -1,6 +1,7 @@
 resources:
 - deployment.yml
 - service.yml
+- cert-secret.yml
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -14,5 +15,5 @@ configMapGenerator:
     - ConnectionStrings__eventbus=amqp://guest:PFV8aZQjil@eventbus:5672
     - Identity__Url=https://identity-api:8443
     - ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
-    - ASPNETCORE_URLS=http://+:8080
+    - ASPNETCORE_HTTP_PORTS=8080
 
