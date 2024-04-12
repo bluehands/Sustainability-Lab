@@ -46,7 +46,8 @@ releases:
     name: traefik
     namespace: kube-system
     chart: traefik/traefik
-    version: ^26.1.0
+    version: ^27.0.2
+
 
   - <<: *default
     name: kepler

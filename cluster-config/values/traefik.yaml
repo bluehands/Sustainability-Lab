@@ -12,7 +12,8 @@ additionalArguments:
 
 ports:
   traefik:
-    expose: true
+    expose: 
+      default: true        
   web:
     port: 80
   websecure:
@@ -37,3 +38,10 @@ securityContext:
 resources:
   requests:
     cpu: 10m
+
+metrics:
+  prometheus:
+    serviceMonitor: 
+      myKey: am    
+    service:
+      enabled: true
