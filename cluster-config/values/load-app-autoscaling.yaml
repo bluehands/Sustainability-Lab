@@ -7,7 +7,8 @@ resource:
     minReplicaCount: 1
     maxReplicaCount: 20
     triggers:
-    - type: cpu
-      metricType: Utilization
+    - type: prometheus
       metadata:
-        value: "70"
+        serverAddress: http://prometheus.aks.carbon-aware-computing.com
+        query: label_replace(sum(rate(traefik_service_requests_total{exported_service="app-testing-load-app-8080@kubernetes"}[1m])), "tag", "tag", "", "(.*)") / on(tag) label_replace(kube_deployment_spec_replicas{deployment="load-app"}, "tag", "tag", "", "(.*)")
+        threshold: '0.1'
