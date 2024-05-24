@@ -7,11 +7,6 @@ repositories:
 
 releases:
   - <<: *default
-    name: dashboards
-    namespace: monitoring
-    chart: {{ $local }}/resource
-
-  - <<: *default
     name: goldilocks
     namespace: scaling
     chart: fairwinds-stable/goldilocks

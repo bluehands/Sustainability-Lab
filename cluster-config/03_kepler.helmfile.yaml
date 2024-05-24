@@ -28,3 +28,8 @@ releases:
     name: grid-carbon-intensity-configmap-exporter-crb
     chart: k8s-as-helm/clusterrolebinding
     version: ^1.0.0
+
+  - <<: *default
+    name: 03-kepler-dashboards
+    namespace: monitoring
+    chart: {{ $local }}/resource

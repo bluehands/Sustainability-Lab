@@ -1,0 +1,15 @@
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_dashboard: '1'
+resource:
+  data:
+{{ range $index,$item := readDir "./dashboards/01-setup/" }}
+  {{- $itemSplit := splitList  "/" $item }}
+  {{- if contains "\\" $item }}
+    {{- $itemSplit = splitList "\\" $item }}
+  {{- end }}
+
+  {{- $name := $itemSplit | last }}
+    {{ $name }}: {{ readFile $item | toJson }}
+{{ end }}
