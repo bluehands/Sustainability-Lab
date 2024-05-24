@@ -1,0 +1,18 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+repositories:
+  - name: kedacore
+    url: https://kedacore.github.io/charts
+
+releases:
+  - <<: *default
+    name: keda
+    namespace: scaling
+    chart: kedacore/keda
+    version: ^2.13.2
+
+  - <<: *default
+    name: whoami-autoscaling
+    namespace: app-testing
+    chart: {{ $local }}/resource

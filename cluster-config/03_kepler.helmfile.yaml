@@ -1,0 +1,30 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+repositories:
+  - name: kepler
+    url: https://sustainable-computing-io.github.io/kepler-helm-chart
+
+  - name: k8s-as-helm
+    url: https://ameijer.github.io/k8s-as-helm/
+
+  - name: bjw-s
+    url: https://bjw-s.github.io/helm-charts/
+
+releases:
+  - <<: *default
+    name: kepler
+    namespace: monitoring
+    chart: kepler/kepler
+    version: '0.5.5'
+
+  - <<: *default
+    name: grid-carbon-intensity-configmap-exporter
+    namespace: scaling
+    chart: bjw-s/app-template
+    version: ^3.0.4
+
+  - <<: *default
+    name: grid-carbon-intensity-configmap-exporter-crb
+    chart: k8s-as-helm/clusterrolebinding
+    version: ^1.0.0
