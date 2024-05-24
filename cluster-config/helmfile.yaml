@@ -97,17 +97,17 @@ releases:
     version: ^1.0.0
 
   - <<: *default
-    name: load-app
+    name: whoami
     namespace: app-testing
     chart: bjw-s/app-template
     version: ^3.0.4
 
   - <<: *default
-    name: load-app-autoscaling
+    name: whoami-autoscaling
     namespace: app-testing
     chart: {{ $local }}/resource
 
   - <<: *default
-    name: load-app-carbon-aware-scaling
+    name: whoami-carbon-aware-scaling
     namespace: app-testing
     chart: {{ $local }}/resource

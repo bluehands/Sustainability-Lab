@@ -4,7 +4,7 @@ resource:
   spec:
     kedaTarget: scaledobjects.keda.sh
     kedaTargetRef:
-      name: load-app-autoscaling
+      name: whoami-autoscaling
       namespace: {{ .Release.Namespace }}
     carbonIntensityForecastDataSource:       # carbon intensity forecast data source 
       # mockCarbonForecast: true              # [OPTIONAL] use mock carbon forecast data 
