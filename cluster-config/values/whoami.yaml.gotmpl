@@ -3,7 +3,7 @@ controllers:
     containers:
       main:
         image:
-          repository: sustainabilitylab.azurecr.io/load-app
+          repository: traefik/whoami
           tag: latest
         resources:
           limits:
@@ -15,12 +15,12 @@ service:
     controller: main
     ports:
       http:
-        port: 8080
+        port: 80
 
 ingress:
   main:
     hosts:
-      - host: load-app.{{ .Values.domain }}
+      - host: whoami.{{ .Values.domain }}
         paths:
           - path: /
             service:

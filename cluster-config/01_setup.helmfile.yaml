@@ -1,0 +1,36 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+repositories:
+  - name: traefik
+    url: https://helm.traefik.io/traefik/
+
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+
+  - name: bjw-s
+    url: https://bjw-s.github.io/helm-charts/
+
+releases:
+  - <<: *default
+    name: traefik
+    namespace: kube-system
+    chart: traefik/traefik
+    version: ^27.0.2
+
+  - <<: *default
+    name: kube-prometheus-stack
+    namespace: monitoring
+    chart: prometheus-community/kube-prometheus-stack
+    version: ^57.1.0
+
+  - <<: *default
+    name: whoami
+    namespace: app-testing
+    chart: bjw-s/app-template
+    version: ^3.0.4
+
+  - <<: *default
+    name: 01-setup-dashboards
+    namespace: monitoring
+    chart: {{ $local }}/resource

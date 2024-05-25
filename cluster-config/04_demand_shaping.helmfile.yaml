@@ -1,0 +1,16 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+repositories: []
+
+releases:
+  # TODO: Chart is currently static. Needs to be made more dynamic.
+  - <<: *default
+    name: carbon-aware-keda-operator
+    namespace: scaling
+    chart: {{ $local }}/carbon-aware-keda-operator
+
+  - <<: *default
+    name: whoami-carbon-aware-scaling
+    namespace: app-testing
+    chart: {{ $local }}/resource

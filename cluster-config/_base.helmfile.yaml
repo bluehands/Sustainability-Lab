@@ -1,0 +1,19 @@
+environments:
+  default:
+    values:
+      - ./environments/values.yaml
+      - ./environments/secrets.yaml
+
+---
+templates:
+  default: &default
+    missingFileHandler: Debug
+    valuesTemplate:
+      - './values/{{ splitList "/" .Release.Chart | last }}.chart.yaml'
+      - './values/{{ splitList "/" .Release.Chart | last }}.chart.yaml.gotmpl'
+      - './values/{{ .Release.Name }}.yaml'
+      - './values/{{ .Release.Name }}.yaml.gotmpl'
+      - './secrets/{{ splitList "/" .Release.Chart | last }}.chart.yaml'
+      - './secrets/{{ splitList "/" .Release.Chart | last }}.chart.yaml.gotmpl'
+      - './secrets/{{ .Release.Name }}.yaml'
+      - './secrets/{{ .Release.Name }}.yaml.gotmpl'
