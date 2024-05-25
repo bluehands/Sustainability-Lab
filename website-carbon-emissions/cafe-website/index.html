@@ -57,14 +57,17 @@ https://www.tooplate.com/view/2126-antique-cafe
                         Feel free to use this layout for your cafe.
                         If you have any question, please <a rel="nofollow" href="https://www.tooplate.com/contact"
                             target="_parent">send us a message</a>. </p>
+                    <br>
+                    <p class="text-white leading-8 text-sm font-semibold" id="carbon-emissions">Carbon emissions:
+                        Session NA (Last request NA)</p>
                 </div>
                 <div class="text-center">
                     <div class="inline-block">
-                        <a href="#menu"
+                        <button onclick="loadData()"
                             class="flex justify-center items-center bg-black bg-opacity-70 py-6 px-8 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
                             <i class="fas fa-coffee mr-3"></i>
-                            <span>Let's explore...</span>
-                        </a>
+                            <span>Let's load some data in background...</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -216,7 +219,6 @@ https://www.tooplate.com/view/2126-antique-cafe
                 <div
                     class="text-white container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-between">
                     <span>Copyright 2022 Antique Cafe. All rights reserved.</span>
-                    <span id="carbon-emissions">Carbon emissions: Session NA (Last request NA)</span>
                     <span class="mt-5 md:mt-0">Design: <a href="https://www.tooplate.com"
                             target="_parent">Tooplate</a></span>
                 </div>
@@ -229,21 +231,34 @@ https://www.tooplate.com/view/2126-antique-cafe
     <script src="js/jquery.singlePageNav.min.js"></script>
     <script type="module" src="js/carbon.js"></script>
     <script type="module">
-        import {getEstimatedCarbonEmissions} from './js/carbon.js';    
-        let estimatedCO2 = await getEstimatedCarbonEmissions('de');
-        let totalEmission = 0;
-        if (!isNaN(window.sessionStorage.getItem("totalEmission"))) {
-            totalEmission += parseFloat(window.sessionStorage.getItem("totalEmission"));
-        }
-        totalEmission += estimatedCO2;
-        if (isNaN(totalEmission)){
-            totalEmission = 0;
-        }
-        window.sessionStorage.setItem("totalEmission", totalEmission)
-        console.log(totalEmission);
-        let msg = `Carbon emissions: Session ${totalEmission.toFixed(2)}g (Last request ${estimatedCO2.toFixed(2)}g)`;
-        $("#carbon-emissions").text(msg);
+        import { CarbonMeter } from './js/carbon.js';
 
+        let cm = new CarbonMeter('de');
+        cm.onMetering(
+            (sessionTotalCo2, lastRequestCo2) => {
+                let msg = `Carbon emissions: Session ${sessionTotalCo2.toFixed(2)}g (Last request ${lastRequestCo2.toFixed(2)}g)`;
+                document.getElementById("carbon-emissions").innerText = msg;
+            }
+        );
+        cm.start();
+        //loadData();
+    </script>
+    <script>
+        function loadData() {
+            setTimeout(() => {
+                let size = Math.floor(Math.random() * 100000);
+                let response = fetch(`https://randomnumberswebapi.azurewebsites.net/api/randomnumbers?length=${size}`)
+                response.then(r => {
+                    r.json().then(j => {
+                        //console.log(j);
+                    })
+
+                },
+                    e => {
+                        console.log(e);
+                    });
+            }, 1);
+        }
     </script>
     <script>
 
