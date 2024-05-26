@@ -38,16 +38,15 @@ export class CarbonMeter {
     async #observerEmissionsFromBackgroundTransfer() {
         let carbonIntensity = await this.#getCarbonIntensity();
         const observer = new PerformanceObserver((list) => {
-            //setTimeout(() => {
-            for (const entry of list.getEntries()) {
-                if (entry.initiatorType === "fetch") {
-                    let j = entry.toJSON();
-                    let bytesSent = j.transferSize;
-                    this.#calculateAndReportEmissions(bytesSent, carbonIntensity);
+            setTimeout(() => {
+                for (const entry of list.getEntries()) {
+                    if (entry.initiatorType === "fetch" || entry.initiatorType === "xmlhttprequest") {
+                        let j = entry.toJSON();
+                        let bytesSent = j.transferSize;
+                        this.#calculateAndReportEmissions(bytesSent, carbonIntensity);
+                    }
                 }
-            }
-
-            //}, 1);
+            }, 1);
 
         });
 

@@ -246,18 +246,46 @@ https://www.tooplate.com/view/2126-antique-cafe
     <script>
         function loadData() {
             setTimeout(() => {
-                let size = Math.floor(Math.random() * 100000);
-                let response = fetch(`https://randomnumberswebapi.azurewebsites.net/api/randomnumbers?length=${size}`)
-                response.then(r => {
-                    r.json().then(j => {
-                        //console.log(j);
-                    })
-
-                },
-                    e => {
-                        console.log(e);
-                    });
+                fromFetch();
+                fromXHR();
+                fromJQuery();
             }, 1);
+        }
+        function fromFetch() {
+            let size = Math.floor(Math.random() * 100000);
+            let response = fetch(`https://randomnumberswebapi.azurewebsites.net/api/randomnumbers?length=${size}`)
+            response.then(r => {
+                r.json().then(j => {
+                    //console.log(j);
+                })
+            },
+                e => {
+                    console.log(e);
+                });
+        }
+        function fromXHR() {
+            let size = Math.floor(Math.random() * 100000);
+            let request = new XMLHttpRequest();
+            request.open("GET", `https://randomnumberswebapi.azurewebsites.net/api/randomnumbers?length=${size}`);
+            request.addEventListener('load', function (event) {
+                if (request.status >= 200 && request.status < 300) {
+                    //console.log(request.responseText);
+                } else {
+                    console.warn(request.statusText, request.responseText);
+                }
+            });
+            request.send();
+        }
+        function fromJQuery() {
+            let size = Math.floor(Math.random() * 100000);
+            $.ajax({
+                url: `https://randomnumberswebapi.azurewebsites.net/api/randomnumbers?length=${size}`,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function (res) {
+                    //console.log(res);
+                }
+            });
         }
     </script>
     <script>
