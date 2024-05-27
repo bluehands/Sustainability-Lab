@@ -10,5 +10,5 @@ resource:
     - type: prometheus
       metadata:
         serverAddress: http://prometheus.aks.carbon-aware-computing.com
-        query: label_replace(sum(rate(traefik_service_requests_total{exported_service="app-testing-whoami-8080@kubernetes"}[1m])), "tag", "tag", "", "(.*)") / on(tag) label_replace(kube_deployment_spec_replicas{deployment="whoami"}, "tag", "tag", "", "(.*)")
+        query: label_replace(sum(rate(traefik_service_requests_total{exported_service="app-testing-whoami-80@kubernetes"}[1m])), "tag", "tag", "", "(.*)") / on(tag) label_replace(kube_deployment_spec_replicas{deployment="whoami"}, "tag", "tag", "", "(.*)")
         threshold: '0.1'
