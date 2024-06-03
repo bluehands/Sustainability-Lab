@@ -16,3 +16,5 @@ releases:
     name: whoami-autoscaling
     namespace: app-testing
     chart: {{ $local }}/resource
+    needs:
+      - scaling/keda

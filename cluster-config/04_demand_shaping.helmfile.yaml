@@ -14,3 +14,5 @@ releases:
     name: whoami-carbon-aware-scaling
     namespace: app-testing
     chart: {{ $local }}/resource
+    needs:
+      - scaling/carbon-aware-keda-operator
