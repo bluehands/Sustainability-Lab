@@ -24,7 +24,7 @@ ports:
 # Does not work while CRDs are not deployed -> Needs to be disabled before applying for the first time
 ingressRoute:
   dashboard:
-    enabled: true
+    enabled: false
 
 securityContext:
   capabilities:
