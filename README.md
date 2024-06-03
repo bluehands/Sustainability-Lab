@@ -12,4 +12,5 @@ To run the load test for the WhoAmI Azure Container App execute:
 
 ``` cmd
 artillery run scale-container-app-whoami.yml
+artillery run scale-k8s-whoami.yml
 ```
