@@ -9,6 +9,6 @@ resource:
     triggers:
     - type: prometheus
       metadata:
-        serverAddress: http://prometheus.aks.carbon-aware-computing.com
+        serverAddress: http://kube-prometheus-stack-prometheus.monitoring:9090
         query: sum(irate(traefik_service_requests_total{exported_service="app-testing-whoami-80@kubernetes"}[1m])) / on() kube_deployment_spec_replicas{deployment="whoami"}
         threshold: '0.1'
