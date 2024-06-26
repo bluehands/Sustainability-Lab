@@ -32,7 +32,7 @@ prometheus:
       - prometheus.{{ .Values.domain }}
 
 grafana:
-  adminPassword: e39c5c38-5c14-5d0e-b7a8-0b513ed0ec8f
+  adminPassword: {{ .Values.grafana_password }}
 
   persistence:
     enabled: true
