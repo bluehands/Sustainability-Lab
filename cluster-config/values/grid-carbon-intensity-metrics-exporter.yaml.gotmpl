@@ -1,0 +1,41 @@
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: ghcr.io/bluehands/kubernetes-grid-carbon-intensity-metrics-exporter
+          tag: latest
+        env:
+          # - name: ASPNETCORE_ENVIRONMENT
+          #   value: Production
+          - name: Configuration__ComputingLocation
+            value: de
+          - name: Configuration__ForecastDataEndpointTemplate
+            value: https://carbonawarecomputing.blob.core.windows.net/forecasts/{0}.json
+          # - name: ASPNETCORE_HTTP_PORTS
+          #   value: "8080"
+        ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+serviceMonitor:
+  main:
+    enabled: true
+    serviceName: '{{ .Release.Name }}'
+    endpoints:
+    - interval: 10m
+      path: /metrics
+      port: web
+      scheme: http

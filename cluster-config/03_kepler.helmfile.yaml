@@ -19,6 +19,12 @@ releases:
     version: '0.5.5'
 
   - <<: *default
+    name: grid-carbon-intensity-metrics-exporter
+    namespace: monitoring
+    chart: bjw-s/app-template
+    version: ^3.0.4
+
+  - <<: *default
     name: grid-carbon-intensity-configmap-exporter
     namespace: scaling
     chart: bjw-s/app-template
