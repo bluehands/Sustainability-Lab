@@ -1296,7 +1296,7 @@
         "hide": 2,
         "label": "",
         "name": "watt_per_second_to_kWh",
-        "query": "${VAR_WATT_PER_SECOND_TO_KWH}",
+        "query": "0.000000278",
         "skipUrlSync": false,
         "type": "constant"
       }
