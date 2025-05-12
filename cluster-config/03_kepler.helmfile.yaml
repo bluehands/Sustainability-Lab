@@ -9,7 +9,7 @@ repositories:
     url: https://ameijer.github.io/k8s-as-helm/
 
   - name: bjw-s
-    url: https://bjw-s.github.io/helm-charts/
+    url: https://bjw-s-labs.github.io/helm-charts/
 
 releases:
   - <<: *default
