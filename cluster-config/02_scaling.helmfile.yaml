@@ -11,10 +11,3 @@ releases:
     namespace: scaling
     chart: kedacore/keda
     version: ^2.13.2
-
-  - <<: *default
-    name: whoami-autoscaling
-    namespace: app-testing
-    chart: {{ $local }}/resource
-    needs:
-      - scaling/keda

@@ -9,10 +9,3 @@ releases:
     name: carbon-aware-keda-operator
     namespace: scaling
     chart: {{ $local }}/carbon-aware-keda-operator
-
-  - <<: *default
-    name: whoami-carbon-aware-scaling
-    namespace: app-testing
-    chart: {{ $local }}/resource
-    needs:
-      - scaling/carbon-aware-keda-operator

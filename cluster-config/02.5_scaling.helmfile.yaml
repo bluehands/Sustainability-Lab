@@ -1,0 +1,8 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+releases:
+  - <<: *default
+    name: whoami-autoscaling
+    namespace: app-testing
+    chart: {{ $local }}/resource

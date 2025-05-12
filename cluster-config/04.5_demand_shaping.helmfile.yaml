@@ -1,0 +1,10 @@
+{{ readFile "./_base.helmfile.yaml" }}
+{{ $local := "./charts" }}
+
+repositories: []
+
+releases:
+  - <<: *default
+    name: whoami-carbon-aware-scaling
+    namespace: app-testing
+    chart: {{ $local }}/resource
