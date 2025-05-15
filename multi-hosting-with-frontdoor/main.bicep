@@ -1,7 +1,5 @@
 param frontdoor_name string = 'sustainable-azure-multi-hosting'
 param frontdoor_endpoint_name string = 'sustainable-azure-multi-hosting-endpoint'
-param frontdoor_customdomain_name string = 'sustainable-azure-multi-hosting-net'
-param frontdoor_customdomain_hostname string = 'sustainable-azure-app.azurefd.net'
 
 resource frontdoor_profile 'Microsoft.Cdn/profiles@2024-09-01' = {
   name: frontdoor_name
@@ -21,22 +19,6 @@ resource frontdoor_endpoint 'Microsoft.Cdn/profiles/afdendpoints@2024-09-01' = {
   location: 'Global'
   properties: {
     enabledState: 'Enabled'
-  }
-}
-
-resource frontdoor_customdomain 'Microsoft.Cdn/profiles/customdomains@2024-09-01' = {
-  parent: frontdoor_profile
-  name: frontdoor_customdomain_name
-  properties: {
-    hostName: frontdoor_customdomain_hostname
-    tlsSettings: {
-      certificateType: 'ManagedCertificate'
-      minimumTlsVersion: 'TLS12'
-    }
-    extendedProperties: {
-      IsInternal: 'true'
-      RoutesList: '["default"]'
-    }
   }
 }
 
@@ -93,11 +75,6 @@ resource frontdoor_endpoint_default 'Microsoft.Cdn/profiles/afdendpoints/routes@
   parent: frontdoor_endpoint
   name: 'default'
   properties: {
-    customDomains: [
-      {
-        id: frontdoor_customdomain.id
-      }
-    ]
     originGroup: {
       id: frontdoor_origin_groups.id
     }
