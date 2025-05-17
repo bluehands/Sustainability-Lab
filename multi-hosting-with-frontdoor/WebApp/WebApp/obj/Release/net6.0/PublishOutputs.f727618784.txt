@@ -1,0 +1,7 @@
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\WebApp.exe
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\WebApp.dll
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\WebApp.deps.json
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\WebApp.runtimeconfig.json
+C:\Users\MirMohammadi\Source\sustainable-azure\WebApp\WebApp\obj\Release\net6.0\PubTmp\Out\WebApp.pdb

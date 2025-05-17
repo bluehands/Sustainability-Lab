@@ -1,0 +1,12 @@
+{
+    "TenantId": "44aee9fd-a976-44da-acfc-e4f48e64bd57",
+    "SubscriptionId": "3760c816-9a6a-49a0-adc4-5cb5d95bcabb",
+    "AccountId": "bluehands I - MPN Benefits - mirmohammadi@bluehands.de",
+    
+    "ResourceGroupName" : "sustainability-lab-azure",
+    "FrontDoorName" : "sustainable-azure-multi-hosting",
+    "WebAppAddress" : "dynamichostingwebapp.azurewebsites.net",
+    "FunctionAddress" : "dynamichostingfunctionapp.azurewebsites.net",
+    "WebAppName" : "dynamichostingwebapp",
+    "FunctionName" : "DynamicHostingFunctionApp"
+}
