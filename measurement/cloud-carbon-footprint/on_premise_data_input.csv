@@ -1,2 +1,3 @@
 cpuDescription,machineName,memory,machineType,startTime,endTime,country,region,cost,cpuUtilization,powerUsageEffectiveness,dailyUptime,weeklyUptime,monthlyUptime,annualUptime
 Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz,Matrix01,228,server,2023-01-01T00:00:00Z,2023-12-31T23:59:59Z,Germany,Germany,,,,16,80,320,4160
+Intel(R) Xeon(R) i7 13800H CPU,Neo,228,laptop,2023-01-01T00:00:00Z,2023-12-31T23:59:59Z,Germany,Germany,,,,16,80,320,4160
