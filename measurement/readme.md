@@ -1,10 +1,12 @@
 # Measurement of carbon emissions
 
-## Code Carbon
+## RAPL based
 
-Use RAPL to get consumed energy
+### Watt-Wiser
 
-## Scaphandre
+Open Watt-Wiser and stress the cpu
+
+### Scaphandre
 
 Use RAPL to get consumed energy
 
@@ -15,20 +17,25 @@ cd C:\Program Files (x86)\scaphandre
 scaphandre.exe stdout
 ```
 
-## Cloud Energy
+### Code Carbon
+
+Use RAPL to get consumed energy
+
+## Model based
+
+### Cloud Energy
 
 Use pre trained model with cpu utilization to get an estimation
 
-## Kepler
+### Kepler
 
-## Cloud Carbon Footprint
+## CLoud jewels & accounting
+
+### Cloud Carbon Footprint
 
 Use the consumption API or billing API of cloud provider to get an estimation
 
-
-
-
-## Technologie Carbon Standard
+### Technologie Carbon Standard
 
 Count your resources. See [https://www.techcarbonstandard.org/](https://www.techcarbonstandard.org/)
 
