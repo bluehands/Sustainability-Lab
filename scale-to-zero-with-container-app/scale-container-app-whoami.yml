@@ -1,13 +1,13 @@
 config:
   # This is a test server run by team Artillery
   # It's designed to be highly scalable
-  target: https://whoami.yellowsmoke-d382218e.norwayeast.azurecontainerapps.io
+  target: https://whoami.icysea-01662a49.norwayeast.azurecontainerapps.io/
   phases:
-    - duration: 60
+    - duration: 5
       arrivalRate: 1
       rampTo: 5
       name: Warm up phase
-    - duration: 60
+    - duration: 20
       arrivalRate: 5
       rampTo: 10
       name: Ramp up load
