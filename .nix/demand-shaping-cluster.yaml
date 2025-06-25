@@ -1,0 +1,15 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: demand-shaping
+image: rancher/k3s:v1.30.13-k3s1
+ports:
+    # HTTP
+  - port: 8080:80
+    nodeFilters:
+      - loadbalancer
+
+    # AMQP
+  - port: 5672:5672
+    nodeFilters:
+      - loadbalancer
