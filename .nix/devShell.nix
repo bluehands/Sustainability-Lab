@@ -3,11 +3,21 @@ let
   pkgs = import nixpkgs {
     system = "x86_64-linux";
   };
+
+  queue-tool = pkgs.callPackage ./pkgs/queue-tool { };
 in
 pkgs.mkShell {
   name = "sustainability-lab";
   packages = with pkgs; [
     k3d
+
+    queue-tool
+    (writeShellApplication {
+      name = "update-queue-tool-package-deps";
+      text = ''
+        ${queue-tool.passthru.fetch-deps} "$FLAKE_ROOT/.nix/pkgs/queue-tool/deps.json"
+      '';
+    })
 
     (writeShellApplication {
       name = "create-demand-shaping-cluster";
