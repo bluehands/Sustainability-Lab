@@ -1,11 +1,12 @@
 using System.CommandLine.Invocation;
 using System.Text;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
 namespace QueueTool;
 
-internal class ConsumeCommandHandler(ILogger<ConsumeCommand> logger) : ICommandHandler
+internal class ConsumeCommandHandler(ILogger<ConsumeCommand> logger, IHostApplicationLifetime hostApplicationLifetime) : ICommandHandler
 {
     public int Invoke(InvocationContext context)
     {
@@ -16,7 +17,7 @@ internal class ConsumeCommandHandler(ILogger<ConsumeCommand> logger) : ICommandH
     {
         var connectionString = context.ParseResult.GetValueForOption(CommandOptions.ConnectionString) ?? throw new InvalidOperationException();
         var waitTimer = context.ParseResult.GetValueForOption(CommandOptions.WaitTimer);
-        var cancellationToken = CancellationToken.None;
+        var cancellationToken = hostApplicationLifetime.ApplicationStopping;
         
         var connectionFactory = new ConnectionFactory
         {

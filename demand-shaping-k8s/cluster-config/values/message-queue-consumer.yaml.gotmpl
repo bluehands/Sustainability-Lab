@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+resource:
+  spec:
+    selector:
+      matchLabels: &podLabels
+        app: message-queue-consumer
+    template:
+      metadata:
+        labels: *podLabels
+      spec:
+        containers:
+          - name: main
+            image: ghcr.io/bluehands/kubernetes-queue-tool:latest
+            resources:
+              limits:
+                cpu: 50m
+                memory: 50Mi
+            args:
+              - -c
+              - amqp://rabbitmq:{{ .Values.rabbitmq_password }}@rabbitmq/
+              - consume

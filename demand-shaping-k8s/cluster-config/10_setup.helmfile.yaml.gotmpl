@@ -43,3 +43,8 @@ releases:
     namespace: app-testing
     chart: groundhog2k/rabbitmq
     version: ^2.1.1
+
+  - <<: *default
+    name: message-queue-consumer
+    namespace: app-testing
+    chart: {{ $local }}/resource

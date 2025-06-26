@@ -1,0 +1,15 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+resource:
+  spec:
+    cooldownPeriod: 60 # seconds
+    scaleTargetRef:
+      name: message-queue-consumer
+    minReplicaCount: 0
+    maxReplicaCount: 20
+    triggers:
+      - type: prometheus
+        metadata:
+          serverAddress: http://kube-prometheus-stack-prometheus.monitoring:9090
+          query: rabbitmq_queue_messages
+          threshold: '1'

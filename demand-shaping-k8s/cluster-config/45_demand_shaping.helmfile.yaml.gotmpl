@@ -8,3 +8,8 @@ releases:
     name: whoami-carbon-aware-scaling
     namespace: app-testing
     chart: {{ $local }}/resource
+
+  - <<: *default
+    name: message-queue-consumer-carbon-aware-scaling
+    namespace: app-testing
+    chart: {{ $local }}/resource

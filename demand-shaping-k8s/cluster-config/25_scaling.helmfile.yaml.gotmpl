@@ -6,3 +6,8 @@ releases:
     name: whoami-autoscaling
     namespace: app-testing
     chart: {{ $local }}/resource
+
+  - <<: *default
+    name: message-queue-consumer-autoscaling
+    namespace: app-testing
+    chart: {{ $local }}/resource
