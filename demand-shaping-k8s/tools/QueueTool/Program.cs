@@ -14,6 +14,7 @@ const string RABBITMQ_ROUTING_KEY = "demand-shaping";
 var rootCommand = new RootCommand("Tool for testing the demand shaping message queue")
 {
     new ConsumeCommand(),
+    new ProduceCommand(),
     CommandOptions.ConnectionString,
 };
 
@@ -24,6 +25,7 @@ return await new CommandLineBuilder(rootCommand)
         hostBuilder => hostBuilder
             .ConfigureServices(services => { })
             .UseCommandHandler<ConsumeCommand, ConsumeCommandHandler>()
+            .UseCommandHandler<ProduceCommand, ProduceCommandHandler>()
             .ConfigureLogging(loggingBuilder => loggingBuilder
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("QueueTool", LogLevel.Debug)
