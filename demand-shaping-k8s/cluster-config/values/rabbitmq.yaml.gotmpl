@@ -1,0 +1,26 @@
+service:
+  type: LoadBalancer
+  # amqp:
+  #   nodePort: 5672
+
+serviceMonitor:
+  enabled: true
+
+ingress:
+  enabled: true
+  hosts:
+    - host: rabbitmq.{{ .Values.domain }}
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+authentication:
+  user:
+    value: rabbitmq
+  password:
+    value: {{ toJson .Values.rabbitmq_password }}
+  erlangCookie:
+    value: 07cf758d-1964-5c58-9bad-de16a06af6da
+
+prometheusPlugin:
+  enabled: true

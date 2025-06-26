@@ -1,2 +1,3 @@
 domain: # secret
 grafana_password: admin # secret
+rabbitmq_password: rabbitmq # secret

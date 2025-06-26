@@ -11,6 +11,9 @@ repositories:
   - name: bjw-s
     url: https://bjw-s-labs.github.io/helm-charts/
 
+  - name: groundhog2k
+    url: https://groundhog2k.github.io/helm-charts/
+
 releases:
   - <<: *default
     name: traefik
@@ -34,3 +37,9 @@ releases:
     name: 01-setup-dashboards
     namespace: monitoring
     chart: {{ $local }}/resource
+
+  - <<: *default
+    name: rabbitmq
+    namespace: app-testing
+    chart: groundhog2k/rabbitmq
+    version: ^2.1.1
