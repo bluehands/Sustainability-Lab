@@ -8,8 +8,8 @@ resource:
     minReplicaCount: 0
     maxReplicaCount: 20
     triggers:
-      - type: prometheus
+      - type: rabbitmq
         metadata:
-          serverAddress: http://kube-prometheus-stack-prometheus.monitoring:9090
-          query: rabbitmq_queue_messages
-          threshold: '1'
+          host: amqp://rabbitmq:{{ .Values.rabbitmq_password }}@rabbitmq.app-testing/
+          queueName: demand-shaping
+          queueLength: '20' # how many message per pod
