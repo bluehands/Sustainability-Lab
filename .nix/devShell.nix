@@ -42,6 +42,18 @@ pkgs.mkShell {
         ${mkApply "45_demand_shaping"}
       '';
     })
+
+    (writeShellApplication {
+      name = "build-and-publish-queue-tool";
+      text =
+        let
+          imageRepo = "ghcr.io/bluehands/kubernetes-queue-tool:latest";
+        in
+      ''
+        docker build "$FLAKE_ROOT/demand-shaping-k8s/tools/QueueTool" -t ${imageRepo}
+        docker push ${imageRepo}
+      '';
+    })
   ];
 
   shellHook = ''
