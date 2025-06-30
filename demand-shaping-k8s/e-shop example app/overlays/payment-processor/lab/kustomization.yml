@@ -1,7 +1,0 @@
-bases:
-- ../../../payment-processor
-
-patchesStrategicMerge:
-- deployment.yml
-
-namespace: app-eshop

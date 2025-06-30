@@ -1,4 +1,0 @@
-bases:
-- ../../../eventbus
-
-namespace: app-eshop

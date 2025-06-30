@@ -1,4 +1,0 @@
-bases:
-- ../../../postgres  
-
-namespace: app-eshop
