@@ -4,6 +4,10 @@
 
 Create a file `cluster-config/environments/secrets.yaml` with the domain set to your desired one (see `cluster-config/environments/values.yaml`).
 
+### Quick Install
+
+To setup a cluster with all resources for demo or playground purposes run the `setup_cluster.ps1` or `setup_cluster.sh` script inside the `scripts` directory.
+
 ## whoami
 
 A simple web site for testing [http://whoami.aks.carbon-aware-computing.com/](http://whoami.aks.carbon-aware-computing.com/)
