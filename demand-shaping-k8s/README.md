@@ -17,6 +17,13 @@ user: admin
 pwd: admin
 ```
 
+## k9s
+
+``` powershell
+$env:KUBECONFIG="./config/workshop-01.yaml"
+k9s
+```
+
 ## Load test for scaling
 
 ### whoami
@@ -35,6 +42,7 @@ To test the message queue consumer scaling compile the project under `demand-sha
 
 ``` cmd
 queue-tool --connection-string amqp://rabbitmq:rabbitmq@localhost produce --message-count 100
+queue-tool --connection-string amqp://rabbitmq:rabbitmq@131.163.30.32 produce --message-count 100
 ```
 
 Remember to replace `localhost` with the name/address of your cluster.
