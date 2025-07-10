@@ -3,6 +3,7 @@ let
   pkgs = import nixpkgs {
     system = "x86_64-linux";
   };
+  lib = pkgs.lib;
 
   queue-tool = pkgs.callPackage ./pkgs/queue-tool { };
 in
@@ -62,6 +63,51 @@ pkgs.mkShell {
       ''
         docker build "$FLAKE_ROOT/demand-shaping-k8s/tools/QueueTool" -t ${imageRepo}
         docker push ${imageRepo}
+      '';
+    })
+
+    (writeShellApplication {
+      name = "build-static-queue-tool";
+      runtimeInputs = [
+        dotnet-sdk_9
+      ];
+      text =
+        let
+          osList = [
+            "linux"
+            "win"
+            "osx"
+          ];
+          archList = [
+            "x64"
+            "arm64"
+          ];
+          build =
+            { os, arch }:
+            let
+              fileExt = if os == "win" then ".exe" else "";
+            in
+            ''
+              dotnet build \
+                -c Release \
+                --os ${os} --arch ${arch} \
+                --self-contained true \
+                -p:PublishTrimmed=true \
+                "$FLAKE_ROOT/demand-shaping-k8s/tools/QueueTool/QueueTool.csproj"
+              cp -v "$FLAKE_ROOT/demand-shaping-k8s/tools/QueueTool/bin/Release/net8.0/${os}-${arch}/queue-tool${fileExt}" "$FLAKE_ROOT/demand-shaping-k8s/workshop/tools/queue-tool-${os}-${arch}${fileExt}"
+            '';
+          buildCommands =
+            lib.mapCartesianProduct
+            build
+            {
+              os = osList;
+              arch = archList;
+            };
+          buildCommandsScript = lib.concatStringsSep "\n" buildCommands;
+        in
+      ''
+        mkdir -p "$FLAKE_ROOT/demand-shaping-k8s/workshop/tools"
+        ${buildCommandsScript}
       '';
     })
   ];
